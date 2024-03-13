@@ -16,7 +16,7 @@ let loading
 function startLoading() { // 使用Element loading-start 方法
   loading = Loading.service({
     lock: true,
-    text: '加载中……',
+    text: '加载中，请稍后',
     background: 'rgba(0, 0, 0, 0.7)'
   })
 }

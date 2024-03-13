@@ -1,5 +1,6 @@
 const { defineConfig } = require('@vue/cli-service')
 const resolve = dir => path.join(__dirname, dir);
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const path = require('path')
 // 生产环境，测试和正式
 const IS_PROD = ['production', 'prod'].includes(process.env.NODE_ENV)

@@ -1,7 +1,12 @@
 <template>
   <div class="home">
     <div class="search">
-      <el-input v-model="keyWord" placeholder="请输入检索关键字" prefix-icon="el-icon-search"></el-input>
+      <el-input
+        v-model="keyWord"
+        placeholder="请输入检索关键字"
+        prefix-icon="el-icon-search"
+        @keyup.enter="search(1, 10, keyWord)"
+      ></el-input>
       <el-button type="primary" style="margin-left: 10px" @click="search(1, 10, keyWord)">搜索简历</el-button>
       <el-button type="success" @click="goUpload">简历上传</el-button>
     </div>
@@ -68,9 +73,13 @@ export default {
           .post(`/api/resumeView/getDataList.json`, { currentPage: currentPage, size: size, query: { search } })
           .then((res) => {
             if (res.success) {
-              this.list = res.result.rows
-              this.total = res.result.total
-              this.size = res.result.size
+              if (res.result.rows.length) {
+                this.list = res.result.rows
+                this.total = res.result.total
+                this.size = res.result.size
+              } else {
+                this.$message.warning("暂无简历，请先上传")
+              }
             } else {
               this.$message.error(res.message)
             }
