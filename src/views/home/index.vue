@@ -5,7 +5,7 @@
         v-model="keyWord"
         placeholder="请输入检索关键字"
         prefix-icon="el-icon-search"
-        @keyup.enter="search(1, 10, keyWord)"
+        @keyup.enter.native="search(1, 10, keyWord)"
       ></el-input>
       <el-button type="primary" style="margin-left: 10px" @click="search(1, 10, keyWord)">搜索简历</el-button>
       <el-button type="success" @click="goUpload">简历上传</el-button>
